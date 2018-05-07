@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col s12 m4">
+    <div class="round-image-50"><%= image_tag(@user.avatar.url(:medium)) %></div>
+  </div>
+  <div class="col s12 m8">
+    <h3>
+      <%= @user.last_name %>
+      <%= @user.first_name %>
+      <%= @user.patronymic %>
+    </h3>
+  </div>
+</div>
+<hr>
+<h4>Информация</h4>
+Дата рождения:<%= @user.date_of_birth.strftime("%d.%m.%Y") %><br>
+Пол: <%= if @user.is_female then 'Женский' else 'Мужской' end %>
+<div class="fixed-action-btn">
+  <%= link_to edit_user_registration_path(current_user), class: 'btn-floating btn-large red tooltipped', 'data-position': 'left', 'data-tooltip': 'Изменить профиль' do %>
+    <i class="large material-icons">mode_edit</i>
+  <% end %>
+</div>

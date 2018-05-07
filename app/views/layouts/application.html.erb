@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chory</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+
+  <body>
+    <div id="container">
+
+      <div id="menu" >
+
+        <ul id="slide-out" class="side-nav fixed">
+          <%= link_to root_path do %>
+          <li>
+            <img src="<%= asset_path("logo.jpg") %>" alt="" width="300px" >
+          </li>
+          <% end %>
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to 'Профиль пациента', user_path(current_user) %>
+            </li>
+          <% end %>
+          <% if doctor_signed_in? %>
+            <li>
+              <%= link_to 'Профиль врача', doctor_path(current_doctor) %>
+            </li>
+          <% end %>
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to 'Чат c врачом'%>
+            </li>
+          <% end %>
+
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to('Выйти из профиля пациента', destroy_user_session_path, method: :delete) %>
+            </li>
+          <% end %>
+          <% if doctor_signed_in? %>
+            <li>
+              <%= link_to('Выйти из профиля врача', destroy_doctor_session_path, method: :delete) %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div id="content" >
+        <div class="row">
+          <div class="col s12">
+            <a href="#" data-activates="slide-out" class="button-collapse hide-on-large-only">
+              <i class="material-icons teal-text">menu</i>
+            </a>
+          </div>
+        </div>
+
+
+        <%= yield %>
+      </div>
+
+    </div>
+  </body>
+</html>

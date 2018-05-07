@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col s12 m4">
+    <div class="round-image-50"><%= image_tag(@doctor.avatar.url(:medium)) %></div>
+  </div>
+  <div class="col s12 m8">
+    <h3>
+      <%= @doctor.last_name %>
+      <%= @doctor.first_name %>
+      <%= @doctor.patronymic %>
+    </h3>
+  </div>
+</div>
+<hr>
+<h4>Информация</h4>
+Пол: <%= if @doctor.is_female then 'Женский' else 'Мужской' end %>
+<div class="fixed-action-btn">
+  <%= link_to edit_doctor_registration_path(current_doctor), class: 'btn-floating btn-large red tooltipped', 'data-position': 'left', 'data-tooltip': 'Изменить профиль' do %>
+    <i class="large material-icons">mode_edit</i>
+  <% end %>
+</div>

@@ -1,0 +1,6 @@
+<% if user_signed_in? %>
+ <%= @all_docs.each do |doc| %>
+  <p>
+    doc.last_name
+  </p>
+ <% end %>

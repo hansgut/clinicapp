@@ -1,0 +1,59 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import "materialize";
+ @import "https://fonts.googleapis.com/icon?family=Material+Icons";
+ #container {
+   padding-left: 300px;
+ }
+
+ #content {
+   padding: 20px;
+ }
+
+ @media only screen and (max-width : 992px) {
+   #container {
+     padding-left: 0px;
+   }
+ }
+
+ .shadow-t{
+    transition: box-shadow .3s;
+ }
+
+ .shadow-t:hover{
+   box-shadow: 5px 10px 10px rgba(33,33,33,.2);
+ }
+
+ .container form {
+     margin: 0;
+     position: absolute;
+     top: 40%;
+     left: 60%;
+     transform: translate(-50%, -50%);
+ }
+
+ .round-image-50 {
+    background-color: white;
+    border: 1px solid #d9d9d9;
+    border-radius: 75px;
+    -moz-border-radius: 75px;
+    -webkit-border-radius: 75px;
+    height: 150px;
+    width: 150px;
+    overflow: hidden;
+    text-align: center;
+    img { width: 100% }
+}
