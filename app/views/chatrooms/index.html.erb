@@ -1,6 +1,97 @@
-<% if user_signed_in? %>
- <%= @all_docs.each do |doc| %>
-  <p>
-    doc.last_name
-  </p>
- <% end %>
+<%# Chatroom.all.each {|c| c.destroy} %>
+<div class="container">
+  <% if user_signed_in? || doctor_signed_in? %>
+   <% @chatrooms.each do |chat| %>
+    <p>
+      <% if user_signed_in? %>
+      <ul class="collection">
+        <li class="collection-item avatar">
+          <%= image_tag(chat.doctor.avatar.url(:medium), class: 'circle') %>
+          <span class="title"><%= link_to chat.doctor.full_name, chatroom_path(chat) %></span>
+          <p>
+            <% unless chat.messages.all.empty? %>
+            <% if (chat.messages.last.sender == 0 and user_signed_in?) or (chat.messages.last.sender == 1 and doctor_signed_in?) %>
+              <% klass = 0 %>
+            <% else %>
+              <% klass = 1 %>
+            <% end %>
+            <%= if klass == 0 then '<strong> Вы: </strong>'.html_safe + chat.messages.last.body else chat.message.last.body end %><br>
+            <% end %>
+
+             <%= if chat.doctor.online? then '<t style="color: green;">В сети</t>'.html_safe else 'Был в сети ' + time_ago_in_words(chat.doctor.last_seen)+' назад' end %>
+          </p>
+        </li>
+      </ul>
+
+      <% end %>
+      <% if doctor_signed_in? %>
+      <ul class="collection">
+        <li class="collection-item avatar">
+          <%= image_tag(chat.user.avatar.url(:medium), class: 'circle') %>
+          <span class="title"><%= link_to chat.user.full_name, chatroom_path(chat) %></span>
+          <p>
+          <% if chat.messages.all.empty? %>
+            <% if (chat.messages.last.sender == 0 and user_signed_in?) or (chat.messages.last.sender == 1 and doctor_signed_in?) %>
+              <% klass = 0 %>
+            <% else %>
+              <% klass = 1 %>
+            <% end %>
+            <%= if klass == 0 then '<strong> Вы: </strong>'.html_safe + chat.messages.last.body else chat.messages.last.body end %><br>
+          <% end %>
+          <%= if chat.user.online? then '<t style="color: green;">В сети</t>'.html_safe else 'Был в сети ' + time_ago_in_words(chat.user.last_seen)+' назад' end %>
+          </p>
+          <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+        </li>
+      </ul>
+      <% end %>
+    </p>
+   <% end %>
+  <% end %>
+</div>
+
+<div class="fixed-action-btn">
+  <a class="btn-floating btn-large red modal-trigger" href="#modal1">
+    <i class="large material-icons">add</i>
+  </a>
+</div>
+<!-- Modal Structure -->
+<div id="modal1" class="modal bottom-sheet">
+  <div class="modal-content">
+    <% if user_signed_in? %>
+      <% unless @all_docs.empty? %>
+      <ul class="collection">
+        <% @all_docs.each do |doc| %>
+            <li class="collection-item avatar">
+              <%= image_tag(doc.avatar.url(:medium), class: 'circle') %>
+              <span class="title"><%= link_to doc.full_name, chatrooms_path(:user_id => current_user.id, :doctor_id => doc.id), :method => :post %></span>
+              <p>Профессионал<br>
+                 Хирург
+              </p>
+            </li>
+            <br>
+          <% end %>
+        <% else %>
+          <h4>Нет новых врачей</h4>
+        <% end %>
+      </ul>
+    <% end %>
+    <% if doctor_signed_in? %>
+      <% unless @all_users.empty? %>
+      <ul class="collection">
+        <% @all_users.each do |user| %>
+            <li class="collection-item avatar">
+              <%= image_tag(user.avatar.url(:medium), class: 'circle') %>
+              <span class="title"><%= link_to user.full_name, chatrooms_path(:user_id => user.id, :doctor_id => current_doctor.id), :method => :post %></span>
+              <p>Профессионал<br>
+                 Хирург
+              </p>
+            </li>
+            <br>
+          <% end %>
+        <% else %>
+          <h4>Нет новых пациентов</h4>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>

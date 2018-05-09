@@ -1,0 +1,19 @@
+<% if user_signed_in?%>
+  <h4 class="center"><%= @chatroom.doctor.full_name %></h4>
+  <h6 class="center"><%= if @chatroom.doctor.online? then '<t style="color: green;">В сети</t>'.html_safe else 'Был в сети ' + time_ago_in_words(@chatroom.doctor.last_seen)+' назад' end %></h6>
+<% else %>
+  <h4 class="center"><%= @chatroom.user.full_name %></h4>
+  <h6 class="center"><%= if @chatroom.user.online? then '<t style="color: green;">В сети</t>'.html_safe else 'Был в сети ' + time_ago_in_words(@chatroom.user.last_seen)+' назад' end %></h6>
+<% end %>
+<ol class="chat" id="chat">
+  <% @messages.each do |message| %>
+    <%= render message %>
+  <% end %>
+</ol>
+<%= form_for [@chatroom, @chatroom.messages.new], remote: true do |f| %>
+<%= f.hidden_field :user_id, value: @chatroom.user_id %>
+<%= f.hidden_field :doctor_id, value: @chatroom.doctor_id %>
+<%= f.hidden_field :sender, value: if user_signed_in? then 0 else 1 end %>
+<%= f.text_area :body, class: "text_area", id: 'area'  %>
+<%= f.submit "Отправить", class: "btn btn-success", id:'send'%>
+<% end %>

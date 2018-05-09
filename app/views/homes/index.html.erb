@@ -1,2 +1,20 @@
-<h1>Homes#index</h1>
-<p>Find me in app/views/homes/index.html.erb</p>
+<div class="split left-h">
+  <div class="centered">
+    <h2>Пациент?</h2>
+    <div class="col s12">
+      <%= link_to 'Войти', new_user_session_path, class:'waves-effect waves-light btn red' %>
+    </div>
+    <br>
+    <div class="col s12">
+      <%= link_to 'Зарегистрироваться', new_user_registration_path, class:'waves-effect waves-light btn red' %>
+    </div>
+
+  </div>
+</div>
+
+<div class="split right-h">
+  <div class="centered">
+    <h2>Врач?</h2>
+    <%= link_to 'Войти', new_doctor_session_path, class:'waves-effect waves-light btn red' %>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<% if (message.sender == 0 and user_signed_in?) or (message.sender == 1 and doctor_signed_in?) %>
+  <% klass = 'self' %>
+<% else %>
+  <% klass = 'other' %>
+<% end %>
+
+<li class="<%= klass %>">
+  <div class="avatar">
+    <% if message.sender == 0 %>
+      <%= image_tag(message.user.avatar.url(:medium)) %>
+    <% else %>
+      <%= image_tag(message.doctor.avatar.url(:medium)) %>
+    <% end %>
+  </div>
+  <div class="msg">
+    <p><%= message.body %></p>
+    <time><%= message.created_at.strftime("%m/%d/%Y %I:%M%p") %></time>
+  </div>
+</li>

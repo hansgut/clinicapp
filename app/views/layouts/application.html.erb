@@ -9,32 +9,35 @@
   </head>
 
   <body>
+    <% if user_signed_in? or doctor_signed_in? %>
     <div id="container">
 
       <div id="menu" >
 
         <ul id="slide-out" class="side-nav fixed">
           <%= link_to root_path do %>
-          <li>
             <img src="<%= asset_path("logo.jpg") %>" alt="" width="300px" >
-          </li>
           <% end %>
           <% if user_signed_in? %>
             <li>
-              <%= link_to 'Профиль пациента', user_path(current_user) %>
+              <%= link_to 'Профиль пациента', user_path(current_user), id: 'user' %>
             </li>
           <% end %>
           <% if doctor_signed_in? %>
             <li>
-              <%= link_to 'Профиль врача', doctor_path(current_doctor) %>
+              <%= link_to 'Профиль врача', doctor_path(current_doctor), id: 'user'  %>
             </li>
           <% end %>
           <% if user_signed_in? %>
             <li>
-              <%= link_to 'Чат c врачом'%>
+              <%= link_to 'Чат c врачом', chatrooms_path %>
             </li>
           <% end %>
-
+          <% if doctor_signed_in? %>
+            <li>
+              <%= link_to 'Чат c пациентом', chatrooms_path %>
+            </li>
+          <% end %>
           <% if user_signed_in? %>
             <li>
               <%= link_to('Выйти из профиля пациента', destroy_user_session_path, method: :delete) %>
@@ -51,7 +54,7 @@
       <div id="content" >
         <div class="row">
           <div class="col s12">
-            <a href="#" data-activates="slide-out" class="button-collapse hide-on-large-only">
+            <a href="#" data-activates="slide-out" class="button-collapse hide-on-large-only fixed">
               <i class="material-icons teal-text">menu</i>
             </a>
           </div>
@@ -60,7 +63,9 @@
 
         <%= yield %>
       </div>
-
+    <% else %>
+      <%= yield %>
+    <% end %>
     </div>
   </body>
 </html>

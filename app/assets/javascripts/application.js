@@ -28,7 +28,17 @@ $(document).ready(function(){
   $('.dropdown-button').dropdown();
   $(".button-collapse").sideNav();
   $('.tabs').tabs();
+  $('.modal').modal();
+  $('#send').click(function(){
+    sleep(1).then(()=>{
+      $('#area').val('');
+    });
+  });
 });
+
+function sleep (time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}
 
 function cross_click() {
   $('#area').val('');
