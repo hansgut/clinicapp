@@ -1,68 +1,62 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <div>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name, autofocus: true %>
-  </div>
-
-  <div>
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name, autofocus: true %>
-  </div>
-
-  <div>
-    <%= f.label :patronymic %>
-    <%= f.text_field :patronymic, autofocus: true %>
-  </div>
-  <div class="form-group">
-    <%= f.label :avatar, class: 'col-sm-2 control-label'  %>
-    <div class="col-sm-6">
-      <%= f.file_field :avatar %>
+<div class="row">
+  <div class="col s12 m6 l6 push-m3 push-l3">
+    <div class="col s12">
+      <h2>Изменить профиль</h2>
     </div>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= devise_error_messages! %>
+      <div class="input-field col s12">
+        <%= f.label :last_name, 'Фамилия' %>
+        <%= f.text_field :last_name %>
+      </div>
 
-  <%= f.radio_button :is_female, false %>
-  <%= f.label :is_female_false, 'Мужской'%>
-  <%= f.radio_button :is_female, true %>
-  <%= f.label :is_female_true, 'Женский'%>
+      <div class="input-field col s12">
+        <%= f.label :first_name, 'Имя' %>
+        <%= f.text_field :first_name%>
+      </div>
 
+      <div class="input-field col s12">
+        <%= f.label :patronymic, 'Отчество' %>
+        <%= f.text_field :patronymic %>
+      </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+      <div class="col s12">
+        <%= f.label :is_female, 'Пол' %>
+        <%= f.radio_button :is_female, false %>
+        <%= f.label :is_female_false, 'Мужской'%>
+        <%= f.radio_button :is_female, true %>
+        <%= f.label :is_female_true, 'Женский'%>
+      </div>
+      <div class="form-group">
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+        <div class="col-sm-6">
+          <%= f.file_field :avatar %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+        <%= f.password_field :password, autocomplete: "off" %>
+        <% if @minimum_password_length %>
+          <br />
+          <em><%= @minimum_password_length %> characters minimum</em>
+        <% end %>
+      </div>
+
+      <div class="input-field col s12">
+        <%= f.label :password_confirmation, 'Подтверждение пароля' %>
+        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+        <%= f.password_field :current_password, autocomplete: "off" %>
+      </div>
+
+      <div class="input-field col s12">
+        <%= f.submit 'Обновить', class: 'waves-effect waves-light btn red col s12' %>
+      </div>
     <% end %>
+    <%= link_to "Back", :back %>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>

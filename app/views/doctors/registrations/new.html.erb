@@ -1,47 +1,62 @@
-<h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-  <div>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name, autofocus: true %>
+<div class="row">
+  <div class="col s12 m6 l4 push-m3 push-l4">
+    <div class="col s12">
+      <h2>Регистрация</h2>
+    </div>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+
+      <div class="input-field col s12">
+        <%= f.label :last_name, 'Фамилия' %>
+        <%= f.text_field :last_name %>
+      </div>
+
+      <div class="input-field col s12">
+        <%= f.label :first_name, 'Имя' %>
+        <%= f.text_field :first_name%>
+      </div>
+
+      <div class="input-field col s12">
+        <%= f.label :patronymic, 'Отчество' %>
+        <%= f.text_field :patronymic %>
+      </div>
+      <div class="col s12">
+        <%= f.label :is_female, 'Пол' %>
+        <%= f.radio_button :is_female, false %>
+        <%= f.label :is_female_false, 'Мужской'%>
+        <%= f.radio_button :is_female, true %>
+        <%= f.label :is_female_true, 'Женский'%>
+      </div>    
+
+      <div class="input-field col s12">
+          <%= f.collection_select(:specialty_id, Specialty.all, :id, :title) %>
+          <label>Специальность</label>
+      </div>
+
+      <div class="input-field col s12">
+        <%= f.label :email %>
+        <%= f.email_field :email, autocomplete: "email" %>
+      </div>
+
+      <div class="input-field col s12">
+        <%= f.label :password, 'Пароль (минимум 6 символов)' %>
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
+
+      <div class="input-field col s12">
+        <%= f.label :password_confirmation, 'Подтверждение пароля' %>
+        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      </div>
+
+      <div class="input-field col s12">
+        <%= f.submit "Зарегистрироваться", class: 'waves-effect waves-light btn red col s12' %>
+      </div>
+    <% end %>
+    <div class="input-field col s12">
+      <%= render "doctors/shared/links" %>
+    </div>
+
   </div>
 
-  <div>
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name, autofocus: true %>
-  </div>
-
-  <div>
-    <%= f.label :patronymic %>
-    <%= f.text_field :patronymic, autofocus: true %>
-  </div>
-
-  <%= radio_button_tag :is_female, false %>
-  <%= label_tag :is_female_false, 'Мужской'%>
-  <%= radio_button_tag :is_female, true %>
-  <%= label_tag :is_female_true, 'Женский'%>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "doctors/shared/links" %>
+</div>

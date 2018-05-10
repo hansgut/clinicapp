@@ -29,6 +29,7 @@ $(document).ready(function(){
   $(".button-collapse").sideNav();
   $('.tabs').tabs();
   $('.modal').modal();
+  $('select').material_select();
   $('#send').click(function(){
     sleep(1).then(()=>{
       $('#area').val('');

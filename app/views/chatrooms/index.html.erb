@@ -30,7 +30,7 @@
           <%= image_tag(chat.user.avatar.url(:medium), class: 'circle') %>
           <span class="title"><%= link_to chat.user.full_name, chatroom_path(chat) %></span>
           <p>
-          <% if chat.messages.all.empty? %>
+          <% unless chat.messages.all.empty? %>
             <% if (chat.messages.last.sender == 0 and user_signed_in?) or (chat.messages.last.sender == 1 and doctor_signed_in?) %>
               <% klass = 0 %>
             <% else %>
@@ -40,7 +40,6 @@
           <% end %>
           <%= if chat.user.online? then '<t style="color: green;">В сети</t>'.html_safe else 'Был в сети ' + time_ago_in_words(chat.user.last_seen)+' назад' end %>
           </p>
-          <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
         </li>
       </ul>
       <% end %>
