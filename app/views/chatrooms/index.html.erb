@@ -15,7 +15,7 @@
             <% else %>
               <% klass = 1 %>
             <% end %>
-            <%= if klass == 0 then '<strong> Вы: </strong>'.html_safe + chat.messages.last.body else chat.message.last.body end %><br>
+            <%= if klass == 0 then '<strong> Вы: </strong>'.html_safe + chat.messages.last.body else chat.messages.last.body end %><br>
             <% end %>
 
              <%= if chat.doctor.online? then '<t style="color: green;">В сети</t>'.html_safe else 'Был в сети ' + time_ago_in_words(chat.doctor.last_seen)+' назад' end %>
