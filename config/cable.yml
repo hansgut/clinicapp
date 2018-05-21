@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: redis://03JiIEwnJozxWWBlEbJVclpYEfwv0S0L@pub-redis-17549.eu-central-1-1.1.ec2.redislabs.com:17549
+  url: redis://:03JiIEwnJozxWWBlEbJVclpYEfwv0S0L@pub-redis-17549.eu-central-1-1.1.ec2.redislabs.com:17549
   channel_prefix: chory_production
