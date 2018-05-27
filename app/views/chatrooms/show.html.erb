@@ -17,11 +17,11 @@
     <%= f.hidden_field :sender, value: if user_signed_in? then 0 else 1 end %>
     <div class="row">
       <div class="input-field col s12 l9">
-        <%= f.text_field :body, class: "text_area materialize-textarea", id: 'area'  %>
+        <%= f.text_field :body, class: "text_area", id: 'area'  %>
         <%= f.label :body, 'Сообщение' %>
       </div>
       <div class="col s12 l3">
-        <%= f.submit "Отправить", class: "btn btn-success col s12 btn-large red", id:'send'%>
+        <%= f.submit "Отправить", class: "btn btn-success col s12 btn-large red", id:'send', autocomplete: "off" %>
       </div>
     </div>
   <% end %>

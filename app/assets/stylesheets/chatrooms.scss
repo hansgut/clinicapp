@@ -4,14 +4,7 @@
 
 /* M E S S A G E S */
 
-.input-field input[type=text]:focus + label {
-     color: #f44336 !important;
-}
 
-.input-field input[type=text]:focus {
-     border-bottom: 1px solid #f44336 !important;
-     box-shadow: 0 1px 0 0 #f44336 !important;
-   }
 
 .chat {
     min-height: calc(100vh - 265px);
