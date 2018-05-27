@@ -12,7 +12,8 @@
 </div>
 <hr>
 <h4>Информация</h4>
-Пол: <%= if @doctor.is_female then 'Женский' else 'Мужской' end %>
+<b>Пол: </b><%= if @doctor.is_female then 'Женский' else 'Мужской' end %><br>
+<b>Специальность: </b><%=  @doctor.specialty.title %>
 <div class="fixed-action-btn">
   <%= link_to edit_doctor_registration_path(current_doctor), class: 'btn-floating btn-large red tooltipped', 'data-position': 'left', 'data-tooltip': 'Изменить профиль' do %>
     <i class="large material-icons">mode_edit</i>

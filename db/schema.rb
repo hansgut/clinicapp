@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180509141438) do
+ActiveRecord::Schema.define(version: 20180527212349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,35 @@ ActiveRecord::Schema.define(version: 20180509141438) do
     t.index ["email"], name: "index_doctors_on_email", unique: true
     t.index ["reset_password_token"], name: "index_doctors_on_reset_password_token", unique: true
     t.index ["specialty_id"], name: "index_doctors_on_specialty_id"
+  end
+
+  create_table "heals", force: :cascade do |t|
+    t.string "content"
+    t.bigint "doctor_id"
+    t.bigint "list_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["doctor_id"], name: "index_heals_on_doctor_id"
+    t.index ["list_id"], name: "index_heals_on_list_id"
+  end
+
+  create_table "lists", force: :cascade do |t|
+    t.boolean "is_female"
+    t.integer "age"
+    t.datetime "date_start"
+    t.string "label"
+    t.string "work"
+    t.datetime "date_finish"
+    t.boolean "is_close"
+    t.string "conclusion"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "disease_id"
+    t.bigint "doctor_id"
+    t.index ["disease_id"], name: "index_lists_on_disease_id"
+    t.index ["doctor_id"], name: "index_lists_on_doctor_id"
+    t.index ["user_id"], name: "index_lists_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -107,6 +136,11 @@ ActiveRecord::Schema.define(version: 20180509141438) do
   add_foreign_key "chatrooms", "doctors"
   add_foreign_key "chatrooms", "users"
   add_foreign_key "doctors", "specialties"
+  add_foreign_key "heals", "doctors"
+  add_foreign_key "heals", "lists"
+  add_foreign_key "lists", "diseases"
+  add_foreign_key "lists", "doctors"
+  add_foreign_key "lists", "users"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "doctors"
   add_foreign_key "messages", "users"

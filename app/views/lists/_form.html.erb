@@ -1,0 +1,52 @@
+<%= form_with(model: list, local: true) do |form| %>
+  <% if list.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(list.errors.count, "error") %> prohibited this disease from being saved:</h2>
+
+      <ul>
+      <% list.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="input-field col s12">
+      <%= form.collection_select(:user_id, User.all, :id, :full_name) %>
+      <label>Пациент</label>
+  </div>
+
+  <div class="input-field col s12">
+      <%= form.collection_select(:disease_id, Disease.order(:title), :id, :title) %>
+      <label>Диагноз</label>
+  </div>
+
+  <div class="input-field col s12">
+    <%= form.label :date_start %><br />
+    <%= form.text_field :date_start, class: 'datepicker' %>
+  </div>
+
+  <div class="input-field col s12">
+    <%= form.label :date_finish %><br />
+    <%= form.text_field :date_finish, class: 'datepicker_f' %>
+  </div>
+
+  <div class="input-field col s12">
+    <%= form.label :work, 'Место работы' %>
+    <%= form.text_field :work, id: :list_work %>
+  </div>
+
+  <div class="input-field col s12">
+    <%= form.label :label, 'Специальные пометки' %>
+    <%= form.text_field :lable, id: :list_label %>
+  </div>
+
+  <div class="input-field col s12">
+    <%= form.label :conclusion, 'Заключение' %>
+    <%= form.text_field :conclusion, id: :conclusion_label %>
+  </div>
+    <%= form.hidden_field :doctor_id, value: current_doctor.id %>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

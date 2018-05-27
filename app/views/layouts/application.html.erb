@@ -21,32 +21,31 @@
             <li>
               <%= link_to 'Профиль пациента', user_path(current_user), id: 'user' %>
             </li>
-          <% end %>
-          <% if doctor_signed_in? %>
-            <li>
-              <%= link_to 'Профиль врача', doctor_path(current_doctor), id: 'user'  %>
-            </li>
-          <% end %>
-          <% if user_signed_in? %>
             <li>
               <%= link_to 'Чат c врачом', chatrooms_path %>
             </li>
-          <% end %>
-          <% if doctor_signed_in? %>
             <li>
-              <%= link_to 'Чат c пациентом', chatrooms_path %>
+              <%= link_to 'Больничные листы', lists_path %>
             </li>
-          <% end %>
-          <% if user_signed_in? %>
             <li>
               <%= link_to('Выйти из профиля пациента', destroy_user_session_path, method: :delete) %>
             </li>
           <% end %>
           <% if doctor_signed_in? %>
             <li>
+              <%= link_to 'Профиль врача', doctor_path(current_doctor), id: 'user'  %>
+            </li>
+            <li>
+              <%= link_to 'Чат c пациентом', chatrooms_path %>
+            </li>
+            <li>
+              <%= link_to 'Больничные листы', lists_path %>
+            </li>
+            <li>
               <%= link_to('Выйти из профиля врача', destroy_doctor_session_path, method: :delete) %>
             </li>
           <% end %>
+
         </ul>
       </div>
 

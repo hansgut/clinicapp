@@ -1,0 +1,22 @@
+<ul class="collection with-header">
+  <li class="collection-header"><h4>Больничные листы</h4></li>
+  <% @Lists.each do |l| %>
+    <%= link_to list_path(l) do %>
+    <li class="collection-item"><div>Больничный лист от <%= l.date_start.strftime("%d.%m.%Y") %> | <%= l.user.full_name %>
+      <% if doctor_signed_in? %>
+      <%= link_to list_path(l), class: 'secondary-content',method: :delete, data: { confirm: 'Вы уверены?' } do %>
+            <i class="material-icons red-text">delete</i>
+          <% end %>
+      <% end %>
+        </div>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+<% if doctor_signed_in? %>
+<div class="fixed-action-btn">
+  <%= link_to new_list_path, class: 'btn-floating btn-large red tooltipped', 'data-position': 'left', 'data-tooltip': 'Добавить' do %>
+    <i class="large material-icons">add</i>
+  <% end %>
+</div>
+<% end %>

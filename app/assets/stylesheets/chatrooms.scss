@@ -4,7 +4,17 @@
 
 /* M E S S A G E S */
 
+.input-field input[type=text]:focus + label {
+     color: #f44336 !important;
+}
+
+.input-field input[type=text]:focus {
+     border-bottom: 1px solid #f44336 !important;
+     box-shadow: 0 1px 0 0 #f44336 !important;
+   }
+
 .chat {
+    min-height: calc(100vh - 265px);
     list-style: none;
     background: none;
     margin: 0;
@@ -12,6 +22,11 @@
     margin-top: 60px;
     margin-bottom: 10px;
 }
+
+.send{
+  height: 50px;
+}
+
 .chat li {
     padding: 0.5rem;
     overflow: hidden;

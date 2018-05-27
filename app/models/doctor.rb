@@ -3,6 +3,9 @@ class Doctor < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :messages
   has_many :chatrooms
+  has_many :lists
+  has_many :heals
+  belongs_to :specialty
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 

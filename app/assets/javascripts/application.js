@@ -25,6 +25,15 @@ $(document).ready(function(){
             closeOnSelect: true,
             closeOnClear: true
         });
+  $('.datepicker_f').pickadate({
+            selectMonths: true,
+            selectYears: 100,
+            min: Date.now(),
+            max: new Date(2119,1,1),
+            format: 'dd.mm.yyyy',
+            closeOnSelect: true,
+            closeOnClear: true
+        });
   $('.dropdown-button').dropdown();
   $(".button-collapse").sideNav();
   $('.tabs').tabs();

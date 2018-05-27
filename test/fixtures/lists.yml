@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  is_female: false
+  age: 1
+  date_start: 2018-05-26 08:36:03
+  label: MyString
+  work: MyString
+  date_finish: 2018-05-26 08:36:03
+  is_close: false
+  conclusion: MyString
+
+two:
+  is_female: false
+  age: 1
+  date_start: 2018-05-26 08:36:03
+  label: MyString
+  work: MyString
+  date_finish: 2018-05-26 08:36:03
+  is_close: false
+  conclusion: MyString

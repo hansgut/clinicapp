@@ -10,10 +10,19 @@
     <%= render message %>
   <% end %>
 </ol>
-<%= form_for [@chatroom, @chatroom.messages.new], remote: true do |f| %>
-<%= f.hidden_field :user_id, value: @chatroom.user_id %>
-<%= f.hidden_field :doctor_id, value: @chatroom.doctor_id %>
-<%= f.hidden_field :sender, value: if user_signed_in? then 0 else 1 end %>
-<%= f.text_area :body, class: "text_area", id: 'area'  %>
-<%= f.submit "Отправить", class: "btn btn-success", id:'send'%>
-<% end %>
+<div class="send">
+  <%= form_for [@chatroom, @chatroom.messages.new], remote: true do |f| %>
+    <%= f.hidden_field :user_id, value: @chatroom.user_id %>
+    <%= f.hidden_field :doctor_id, value: @chatroom.doctor_id %>
+    <%= f.hidden_field :sender, value: if user_signed_in? then 0 else 1 end %>
+    <div class="row">
+      <div class="input-field col s12 l9">
+        <%= f.text_field :body, class: "text_area materialize-textarea", id: 'area'  %>
+        <%= f.label :body, 'Сообщение' %>
+      </div>
+      <div class="col s12 l3">
+        <%= f.submit "Отправить", class: "btn btn-success col s12 btn-large red", id:'send'%>
+      </div>
+    </div>
+  <% end %>
+</div>

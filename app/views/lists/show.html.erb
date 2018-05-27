@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col s12 m5 push-m3">
+      <div class="card-panel">
+        <span class="">
+          <h4>Больничный лист</h4>
+          <b>Лечащий врач: </b><%= link_to @list.doctor.full_name, doctor_path(@list.doctor.id) %><br>
+          <b>Даты больничного: </b><%= @list.date_start.to_date.strftime("%d.%m.%Y") %> - <%= @list.date_finish.to_date.strftime("%d.%m.%Y") %><br>
+          <b>ФИО пациента: </b><%= link_to @list.user.full_name, user_path(@list.user.id) %><br>
+          <b>Место работы пациента: </b><%= @list.work %><br>
+          <b>Полных лет: </b><%= @list.age %><br>
+          <b>Диагноз: </b><%= Disease.find(@list.disease_id).title %>
+        </span>
+      </div>
+    </div>
+  </div>
+  <% unless @list.heals.all.empty? %>
+  <div class="row">
+      <div class="col s12 m5 push-m3">
+        <div class="card-panel">
+          <span class="">
+            <h4>Лечение</h4>
+            <% @list.heals.all.each do |h| %>
+            <p>
+              <%= h.content %>
+              <% if doctor_signed_in? %>
+                <%= link_to [h.list, h], class: 'secondary-content',method: :delete, data: { confirm: 'Вы уверены?' } do %>
+                  <i class="material-icons red-text">delete</i>
+                <% end %>
+              <% end %>
+            </p>
+
+            <% end %>
+          </span>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+<% if doctor_signed_in? %>
+  <%= form_for([@list, @list.heals.build]) do |f| %>
+      <%= f.hidden_field :doctor_id, value: current_doctor.id %>
+    <div class="field">
+      <%= f.label :content, 'Лечение' %><br />
+      <%= f.text_area :content %>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Добавить лечение', class: 'btn btn-success' %>
+    </div>
+  <% end %>
+<% end %>
