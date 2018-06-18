@@ -7,7 +7,7 @@ class ListsController < ApplicationController
     end
 
     if doctor_signed_in?
-      @Lists = List.where(doctor_id: current_doctor.id)
+      @Lists = List.order(:created_at)
     end
   end
 

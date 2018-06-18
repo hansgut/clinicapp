@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'treatments/index'
+
+  get 'treatments/new'
+
+  get 'treatments/edit'
+
+  get 'treatments/show'
+
   devise_for :doctors, controllers: {
         sessions: 'doctors/sessions'
       }
@@ -7,6 +15,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
         sessions: 'users/sessions'
       }
+  resources :treatments
   resources :diseases
   resources :chatrooms do
     resources :messages

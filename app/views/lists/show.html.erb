@@ -8,7 +8,8 @@
           <b>ФИО пациента: </b><%= link_to @list.user.full_name, user_path(@list.user.id) %><br>
           <b>Место работы пациента: </b><%= @list.work %><br>
           <b>Полных лет: </b><%= @list.age %><br>
-          <b>Диагноз: </b><%= Disease.find(@list.disease_id).title %>
+          <b>Диагноз: </b><%= Disease.find(@list.disease_id).title %><br>
+          <b>Заключение: </b><%= if @list.conclusion != '' then @list.conclusion else 'нет' end %>
         </span>
       </div>
     </div>

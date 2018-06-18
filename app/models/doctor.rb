@@ -5,6 +5,7 @@ class Doctor < ApplicationRecord
   has_many :chatrooms
   has_many :lists
   has_many :heals
+  has_many :treatments
   belongs_to :specialty
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :messages
   has_many :chatrooms
   has_many :lists
+  has_many :treatments
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 

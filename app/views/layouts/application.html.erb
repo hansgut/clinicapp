@@ -28,6 +28,9 @@
               <%= link_to 'Больничные листы', lists_path %>
             </li>
             <li>
+              <%= link_to 'Обращения', treatments_path %>
+            </li>
+            <li>
               <%= link_to('Выйти из профиля пациента', destroy_user_session_path, method: :delete) %>
             </li>
           <% end %>
@@ -40,6 +43,9 @@
             </li>
             <li>
               <%= link_to 'Больничные листы', lists_path %>
+            </li>
+            <li>
+              <%= link_to 'Обращения', treatments_path %>
             </li>
             <li>
               <%= link_to('Выйти из профиля врача', destroy_doctor_session_path, method: :delete) %>

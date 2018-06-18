@@ -15,6 +15,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'paperclip'
 gem 'rails-i18n'
+gem 'railroady'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets

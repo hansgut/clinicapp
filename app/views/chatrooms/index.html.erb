@@ -64,7 +64,7 @@
               <%= image_tag(doc.avatar.url(:medium), class: 'circle') %>
               <span class="title"><%= link_to doc.full_name, chatrooms_path(:user_id => current_user.id, :doctor_id => doc.id), :method => :post %></span>
               <p>
-                 <%= doc.specialty.title %>
+                 <%= if doc.specialty then doc.specialty.title end %>
               </p>
             </li>
             <br>

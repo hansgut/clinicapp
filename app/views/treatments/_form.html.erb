@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col s12 m6 l4 push-m3 push-l4">
+    <div class="col s12">
+      <h4>Новое обращение</h4>
+    </div>
+<%= form_with(model: treatment, local: true) do |form| %>
+  <% if treatment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(list.errors.count, "error") %> prohibited this disease from being saved:</h2>
+
+      <ul>
+      <% treatment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="input-field col s12">
+      <%= form.collection_select(:user_id, User.all, :id, :full_name) %>
+      <label>Пациент</label>
+  </div>
+  <div class="input-field col s12">
+      <%= form.collection_select(:disease_id, Disease.all, :id, :full_name) %>
+      <label>Диагноз</label>
+  </div>
+
+  <div class="input-field col s12">
+    <%= form.label :complaints, 'Жалобы' %>
+    <%= form.text_field :complaints, id: :treatment_complaints %>
+  </div>
+
+    <%# form.hidden_field :doctor_id, value: current_doctor.id %>
+  <div class="input-field col s12">
+    <%= form.submit 'Добавить обращение', class: 'btn btn-success col s12 red' %>
+  </div>
+<% end %>
+</div>
+</div>
